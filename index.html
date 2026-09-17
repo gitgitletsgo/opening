@@ -68,7 +68,7 @@ h3{font-size:clamp(23px,2vw,30px)}
 .diagnosis-board{border-top:2px solid var(--ink)}
 .diag-row{display:grid;grid-template-columns:minmax(250px,.85fr) minmax(390px,1.15fr);gap:28px 54px;padding:40px 0;border-bottom:1px solid var(--line)}
 .diag-question{display:flex;gap:18px;align-items:flex-start}.diag-question span{color:var(--orange);font-size:13px;letter-spacing:.1em;padding-top:5px}.diag-question strong{font-size:clamp(21px,1.65vw,26px);line-height:1.55}
-.diag-bars{display:grid;gap:16px}.diag-bar{display:grid;grid-template-columns:54px 1fr;align-items:center;gap:12px}.diag-bar b{font-size:14px}.diag-bar i{display:block;height:34px;background:#ece8e2;position:relative;overflow:visible}.diag-bar i:before{content:"";position:absolute;inset:0 auto 0 0;width:var(--value);background:#222;transform:scaleX(0);transform-origin:left;transition:transform 1.25s var(--ease-out)}.diag-row.is-visible .diag-bar i:before{transform:scaleX(1)}.diag-bar.staff i:before{background:var(--orange)}.diag-bar em{position:absolute;left:calc(var(--value) - 50px);top:3px;color:#fff;font-style:normal;font-weight:700;font-size:16px;z-index:1;opacity:0;transition:opacity .4s 1s}.diag-row.is-visible .diag-bar em{opacity:1}
+.diag-bars{display:grid;gap:16px}.diag-bar{display:grid;grid-template-columns:100px 1fr;align-items:center;gap:12px}.diag-bar b{font-size:14px;white-space:nowrap}.diag-bar i{display:block;height:34px;background:#ece8e2;position:relative;overflow:visible}.diag-bar i:before{content:"";position:absolute;inset:0 auto 0 0;width:var(--value);background:#222;transform:scaleX(0);transform-origin:left;transition:transform 1.25s var(--ease-out)}.diag-row.is-visible .diag-bar i:before{transform:scaleX(1)}.diag-bar.staff i:before{background:var(--orange)}.diag-bar em{position:absolute;left:calc(var(--value) - 50px);top:3px;color:#fff;font-style:normal;font-weight:700;font-size:16px;z-index:1;opacity:0;transition:opacity .4s 1s}.diag-row.is-visible .diag-bar em{opacity:1}
 .diag-insight{grid-column:2;font-size:16px;color:var(--muted);padding-left:66px}.diag-insight.accent-line{color:var(--ink)}.diag-insight strong{color:var(--orange)}
 .need-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.need-grid>div{position:relative;background:#f1eee9;padding:20px 64px 20px 20px}.need-grid b{display:block;font-size:12px;color:var(--muted)}.need-grid strong{font-size:18px}.need-grid span{position:absolute;right:18px;top:21px;font-size:23px;color:var(--orange);font-weight:600}
 .diagnosis-caption{font-size:clamp(25px,2.4vw,36px);line-height:1.55;margin-top:58px}.diagnosis-caption strong{background:linear-gradient(transparent 62%,#ff40002e 0)}
@@ -78,7 +78,7 @@ h3{font-size:clamp(23px,2vw,30px)}
 .scene .wrap{transition:transform .18s linear}.scene[data-drift="left"] .wrap{transform:translateX(var(--drift,0))}.scene[data-drift="right"] .wrap{transform:translateX(calc(var(--drift,0) * -1))}
 @keyframes voiceFloat{from{opacity:0;transform:translate(45px,18px)}to{opacity:1;transform:none}}@keyframes questionIn{to{opacity:1}}
 @media(max-width:900px){.diag-row{grid-template-columns:1fr}.diag-insight{grid-column:1;padding-left:0}.bookcase{grid-template-columns:1fr}.book{min-height:390px!important}.project-path{grid-template-columns:1fr}.project-path i{width:100%}.role-bridge{grid-template-columns:1fr}.bridge-motion{flex-direction:row;padding:18px}.bridge-motion i{height:1px;width:42px}}
-@media(max-width:640px){.diag-bar{grid-template-columns:46px 1fr}.need-grid{grid-template-columns:1fr}.book{grid-template-columns:48px 1fr}.book-cover{padding:30px 22px}.project-ribbon{left:48px}.role-bridge article{padding:28px 24px}}
+@media(max-width:640px){.diag-bar{grid-template-columns:84px 1fr}.need-grid{grid-template-columns:1fr}.book{grid-template-columns:48px 1fr}.book-cover{padding:30px 22px}.project-ribbon{left:48px}.role-bridge article{padding:28px 24px}}
 @media(prefers-reduced-motion:reduce){#voice-question,.voice{opacity:1;animation:none}.book{opacity:1;transform:none}.diag-bar i:before{transform:scaleX(1)}.diag-bar em{opacity:1}}
 
 /* Motion correction · decisive appear/disappear */
@@ -144,7 +144,7 @@ h3{font-size:clamp(23px,2vw,30px)}
 
 /* Storyline layer · replayable scroll scenes */
 .leader-signals{margin-top:95px;padding-top:42px;border-top:1px solid var(--line)}
-.signal-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:30px}.signal-head .eyebrow{margin:0}.signal-head h3{max-width:560px;text-align:right}
+.signal-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:30px}.signal-head .eyebrow{margin:0}.signal-head h3{max-width:560px;text-align:right}#diagnosis .signal-head h3{max-width:800px}
 .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.signal-grid article{min-height:310px;padding:34px 36px;background:#f2efea;border:1px solid transparent;position:relative;overflow:hidden}.signal-grid article:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ff400035;border-radius:50%;right:-80px;bottom:-90px}.signal-grid article:nth-child(2){background:#242321;color:#fff}.signal-grid article span{font-size:12px;letter-spacing:.14em;color:var(--orange)}.signal-grid article strong{display:block;font-size:clamp(24px,2vw,32px);line-height:1.5;margin:54px 0 18px}.signal-grid article p{font-size:16px;color:var(--muted)}.signal-grid article:nth-child(2) p{color:#c8c2bb}
 .signal-bridge{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:32px}.signal-bridge i{width:70px;height:1px;background:var(--orange)}.signal-bridge p{font-size:18px;font-weight:600}
 .format-strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.format-strip>div{padding:23px 22px;border-right:1px solid var(--line)}.format-strip>div:last-child{border:0}.format-strip b,.format-strip span{display:block}.format-strip b{font-size:17px}.format-strip span{font-size:13px;color:var(--muted);margin-top:3px}
@@ -196,6 +196,8 @@ h3{font-size:clamp(23px,2vw,30px)}
 body,body *{overflow-wrap:normal;word-break:keep-all;hyphens:none}
 h1,h2,h3,.purpose-lead,.manifesto-kicker,.manifesto-close,.stage-finale strong,.story-cover h3{text-wrap:balance}
 p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.week-one-outline h3{text-wrap:pretty}
+.context-unit{white-space:nowrap}
+@media(max-width:640px){.context-unit{white-space:normal}}
 .purpose-scene h1{font-size:clamp(46px,5.15vw,76px);max-width:1240px}
 .purpose-lead{max-width:1040px}
 
@@ -231,9 +233,10 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 .week-one-outline article{position:relative;overflow:hidden}
 .week-one-outline article:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .76s var(--ease-out)}
 .week-one-outline article.is-inview:after{transform:scaleX(1)}
-.story-book{perspective:1600px;transform-style:preserve-3d}
-.book-pages{position:absolute;inset:7px 3px 5px 12px;z-index:1;border-radius:3px 12px 12px 3px;background:repeating-linear-gradient(0deg,#f8f5ef 0 5px,#ddd7cf 5px 6px);box-shadow:inset 9px 0 16px rgba(78,65,52,.12),0 22px 34px rgba(50,38,26,.18);opacity:var(--page-reveal,0);transition:opacity .12s linear}
-.story-cover{z-index:3;transform-origin:left center;transform:rotateY(var(--cover-angle,0deg));transform-style:preserve-3d;backface-visibility:hidden;will-change:transform;transition:transform .08s linear}
+.story-book{perspective:1500px;transform-style:preserve-3d}
+.book-pages{position:absolute;inset:7px 3px 5px 12px;z-index:1;border-radius:3px 12px 12px 3px;background:linear-gradient(90deg,#d9d2c9 0,#fffdf8 6%,#f8f4ed 72%,#e7dfd5 100%);box-shadow:inset 10px 0 18px rgba(78,65,52,.14),0 22px 34px rgba(50,38,26,.18);opacity:var(--page-reveal,0);transition:opacity .12s linear}
+.book-pages:after{content:"";position:absolute;left:13%;right:11%;top:15%;bottom:14%;opacity:.16;background:repeating-linear-gradient(180deg,#827567 0 1px,transparent 1px 18px)}
+.story-cover{z-index:4;transform-origin:left center;transform:rotateY(var(--cover-angle,0deg));transform-style:preserve-3d;backface-visibility:hidden;will-change:transform;transition:transform .04s linear}
 .week-one-outline{grid-template-columns:repeat(4,minmax(0,1fr))}
 .week-one-outline article{min-height:180px;display:flex;flex-direction:column;padding:30px 28px}
 .week-one-outline h3{font-size:clamp(20px,1.55vw,25px);line-height:1.5;margin:auto 0 0}
@@ -259,6 +262,34 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 @media(max-width:900px){.week-one-outline{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.week-one-outline{grid-template-columns:1fr}.week-one-outline article{min-height:145px}}
 @media(prefers-reduced-motion:reduce){.reveal,[data-story],.scene-title,.week-one-outline article h3,.week-one-outline article>span{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important}.story-cover{transform:none!important}.book-pages{opacity:0!important}}
+
+/* Executive readability: raise the smallest on-screen type without enlarging headlines */
+@media screen{
+  .eyebrow{font-size:17px}
+  .brand{font-size:16px}
+  .journey a{font-size:15px}
+  .workbar button{font-size:16px}
+  .tag,.org,.video-file,.hotspot span,.voice small,.longline .n,.pill,.record .source,
+  .diag-question span,.need-grid b,.book-spine span,.project-ribbon span,.project-path>span,
+  .role-bridge article span,.concept-preview span,.signal-grid article span,.direction-flow b,
+  .week-one-hero span,.helper-roles span,.next-notice span{font-size:15px}
+  .meta,.footer-row button,.caption,.doc-section .doc-label,.mail-head,.ledger th,
+  .schedule .period b,.schedule-caption,.connection-grid span,.report-item b,.source-links,
+  .tool-row .tools,.bridge-motion b,.story-cover>span,.story-cover em,.project-facts span,
+  .format-strip span{font-size:16px}
+  label,.ledger caption,.statline span,.schedule .period p,.project-run,.work-surface .concept,
+  .flow-node,.timeline span,.report-preview .report-item,.report-item p,.bridge-labels,.flow-cue,
+  .diag-bar b,.stage-copy p,.direction-flow span,.purpose-formula article>b,.helper-roles p{font-size:17px}
+  .project-path div p,.purpose-formula article p,.checkline span{font-size:18px}
+}
+@media screen and (max-width:640px){
+  .journey a{font-size:13px}
+  .schedule .period b{font-size:13px}
+  .schedule .period p,.project-run,.schedule-caption{font-size:14px}
+  .flow-node{font-size:15px}
+  .org{font-size:12px}
+  .hotspot span{font-size:13px}
+}
 </style>
 </head>
 <body class="">
@@ -340,97 +371,98 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <section class="scene white" id="diagnosis">
 <div class="wrap">
 <p class="eyebrow">사전진단 결과</p>
-<h2>AI를 사용한다는 인식과,<br>업무에 활용된다는 체감은 달랐습니다.</h2>
-<p class="lead">사전진단 결과, 리더와 직원은 AI 사용 경험과 조직 업무 반영 수준을 서로 다르게 보고 있었습니다.</p>
+<h2>관심과 기대는 높았지만,<br>실제 준비 수준은 그에 미치지 못했습니다.</h2>
+<p class="lead"><span class="context-unit">리더의 자기인식과 구성원의 기대에 비해,</span><br><span class="context-unit">실제 리터러시와 업무 반영 수준은 낮았습니다.</span></p>
 <div class="diagnosis-board space-lg">
 <div class="diag-row">
 <div class="diag-question">
 <span>01</span>
-<strong>업무에서 AI를 직접 사용해 본 적이 있다</strong>
+<strong>리더의 AI 리터러시 수준</strong>
 </div>
 <div class="diag-bars">
 <div class="diag-bar">
-<b>리더</b>
-<i style="--value:82%">
-<em>82%</em>
+<b>자기평가</b>
+<i style="--value:74%">
+<em>74%</em>
 </i>
 </div>
 <div class="diag-bar staff">
-<b>직원</b>
-<i style="--value:68%">
-<em>68%</em>
+<b>진단결과</b>
+<i style="--value:48%">
+<em>48%</em>
 </i>
 </div>
 </div>
 <p class="diag-insight">
-<strong>사용 경험의 차이</strong> · 개인적인 사용 경험부터 리더와 직원의 응답에 차이가 나타났습니다.</p>
+<strong>자기인식과 진단의 차이</strong> · AI를 이해하고 있다는 인식에 비해, 가능성과 한계를 구분하는 실제 진단 결과는 낮았습니다.</p>
 </div>
 <div class="diag-row">
 <div class="diag-question">
 <span>02</span>
-<strong>AI가 조직의 정식 업무에 반영되어 있다</strong>
+<strong>리더의 AI 활용에 대한 조직의 기대</strong>
 </div>
 <div class="diag-bars">
 <div class="diag-bar">
-<b>리더</b>
-<i style="--value:61%">
-<em>61%</em>
+<b>구성원 기대</b>
+<i style="--value:84%">
+<em>84%</em>
 </i>
 </div>
 <div class="diag-bar staff">
-<b>직원</b>
-<i style="--value:34%">
-<em>34%</em>
+<b>현재 체감</b>
+<i style="--value:38%">
+<em>38%</em>
 </i>
 </div>
 </div>
 <p class="diag-insight accent-line">
-<strong>업무 적용 체감의 차이</strong> · 리더가 보는 적용 수준만큼 직원은 업무의 변화를 체감하지 못했습니다.</p>
+<strong>기대와 업무 반영의 차이</strong> · 구성원은 리더가 활용 방향과 기준을 정해주길 기대하지만, 실제 업무 운영에 반영됐다는 체감은 낮았습니다.</p>
 </div>
 <div class="diag-row">
 <div class="diag-question">
 <span>03</span>
-<strong>AI 활용을 위해 가장 필요한 지원</strong>
+<strong>AI를 실제 업무에 적용할 준비</strong>
 </div>
-<div class="need-grid">
-<div>
-<b>리더</b>
-<strong>적용 사례와 방향</strong>
-<span>46%</span>
+<div class="diag-bars">
+<div class="diag-bar">
+<b>적용 의향</b>
+<i style="--value:87%">
+<em>87%</em>
+</i>
 </div>
-<div>
-<b>직원</b>
-<strong>명확한 기준과 데이터</strong>
-<span>52%</span>
+<div class="diag-bar staff">
+<b>과제 구체화</b>
+<i style="--value:31%">
+<em>31%</em>
+</i>
 </div>
 </div>
 <p class="diag-insight">
-<strong>필요한 지원의 차이</strong> · 리더는 활용 방향을, 직원은 실행에 필요한 기준과 데이터를 먼저 원했습니다.</p>
+<strong>관심과 실행의 차이</strong> · AI를 업무에 적용하려는 의지는 높았지만, 구체적인 실행과제로 이어진 경우는 많지 않았습니다.</p>
 </div>
 </div>
-<p class="diagnosis-caption">사전진단은 우리 조직의 AI 활용이 어디까지 와 있고,<br>
-<strong>무엇이 더 필요한지</strong>를 보여줍니다.</p>
+<p class="diagnosis-caption"><span class="context-unit">관심을 실행으로 연결하려면,</span><br><strong class="context-unit">리더가 AI 활용의 방향과 기준을 정해야 합니다.</strong></p>
 <div class="leader-signals" data-story-group>
 <div class="signal-head">
 <p class="eyebrow">진단에서 확인된 두 가지 관심</p>
-<h3>리더의 관심은 ‘적용 조건’과 ‘직접 적용할 업무’에 모였습니다.</h3>
+<h3><span class="context-unit">리더들이 가장 궁금해한 것은</span><br><span class="context-unit">AI 적용에 필요한 조건과 먼저 시작할 업무였습니다.</span></h3>
 </div>
 <div class="signal-grid">
 <article data-story>
 <span>AI 적용을 위해 궁금한 점</span>
-<strong>“우리 조직의 데이터를<br>AI에 활용하려면 무엇을 준비해야 할까?”</strong>
-<p>데이터와 보안, 업무 기준 등 조직 적용에 필요한 조건에 관심을 보였습니다.</p>
+<strong>“AI를 실제 업무에 적용하려면<br>어떤 조건이 갖춰져야 할까?”</strong>
+<p>AI를 실제 업무에 적용하기 위해 데이터와 보안, 업무 기준을 어떻게 갖춰야 하는지가 주요 관심사였습니다.</p>
 </article>
 <article data-story>
 <span>직접 적용해 보고 싶은 업무</span>
-<strong>“우리 업무 중 무엇부터<br>AI에 적용해 볼 수 있을까?”</strong>
-<p>보고서 검토, 자료 검색, 현황 취합, 의사결정 지원 등이 주요 후보로 나타났습니다.</p>
+<strong>“우리 업무 가운데 AI를 가장 먼저<br>적용해 볼 수 있는 것은 무엇일까?”</strong>
+<p>보고서 검토부터 자료 검색과 현황 취합, 의사결정 지원까지 다양한 업무가 적용 후보로 제시됐습니다.</p>
 </article>
 </div>
 <div class="signal-bridge" data-story>
 <i>
 </i>
-<p>3주 교육과 실제 업무과제는 이 두 가지 관심에서 시작합니다.</p>
+<p>3주 교육에서는 적용 조건을 이해하고, 실제 업무과제에서는 적용 가능한 업무를 직접 구체화합니다.</p>
 <i>
 </i>
 </div>
@@ -449,7 +481,7 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 </div>
 <div data-story>
 <b>교육 자료</b>
-<span>주차별 HTML 교안 · 핵심 개념과 사례 영상</span>
+<span>주차별 교안 · 핵심 개념과 사례 영상</span>
 </div>
 <div data-story>
 <b>참여 방식</b>
@@ -774,31 +806,40 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
   document.documentElement.classList.add('story-ready');
   const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
   const lerp=(a,b,t)=>a+(b-a)*t;
+  const ease=t=>1-Math.pow(1-clamp(t),3);
+  const easeInOut=t=>{t=clamp(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
   const labels=['3주 과정 · WEEK 1/3 · 개인','3주 과정 · WEEK 2/3 · 조직','3주 과정 · WEEK 3/3 · 확장'];
   function draw(){
     const r=story.getBoundingClientRect();
     const max=story.offsetHeight-innerHeight;
     const p=clamp(-r.top/max);
     books.forEach((book,i)=>{
-      const start=i*.245;
-      const settle=start+.19;
+      const start=i*.27;
+      const settle=start+.24;
       const t=clamp((p-start)/(settle-start));
-      const before=p<start-.035;
-      const moveT=clamp((t-.34)/.66);
-      const openAmount=Math.sin(Math.PI*t);
+      const before=p<start-.04;
+      const floatT=easeInOut(t/.22);
+      const moveT=easeInOut((t-.38)/.44);
+      const coverOpen=ease((t-.23)/.18);
+      const coverClose=easeInOut((t-.82)/.16);
+      const coverAmount=clamp(coverOpen-coverClose);
       const targetX=(i-1)*28;
-      const scale=lerp(1.08,.64,moveT);
+      const enlarged=lerp(.94,1.08,floatT);
+      const scale=lerp(enlarged,.64,moveT);
       const x=lerp(0,targetX,moveT);
-      const y=-45;
+      const floatY=lerp(-38,-49,floatT);
+      const y=lerp(floatY,-45,moveT);
+      const tiltX=lerp(7,0,floatT);
+      const tiltY=lerp(i%2?6:-6,0,floatT);
       book.style.opacity=before?'0':String(clamp((p-start+.035)/.04));
-      book.style.transform='translate(calc(-50% + '+x+'vw),'+y+'%) scale('+scale+')';
-      book.style.setProperty('--cover-angle',(-62*openAmount)+'deg');
-      book.style.setProperty('--page-reveal',String(clamp(openAmount*1.35)));
+      book.style.transform='translate(calc(-50% + '+x+'vw),'+y+'%) scale('+scale+') rotateX('+tiltX+'deg) rotateY('+tiltY+'deg)';
+      book.style.setProperty('--cover-angle',(-48*coverAmount)+'deg');
+      book.style.setProperty('--page-reveal',String(clamp(coverAmount*1.25)));
       book.style.zIndex=String(8+i);
     });
-    const active=Math.min(2,Math.floor(p/.245));
+    const active=Math.min(2,Math.floor(p/.27));
     status.textContent=labels[active];
-    const end=clamp((p-.76)/.10);
+    const end=clamp((p-.84)/.09);
     finale.style.opacity=String(end);
     document.querySelector('.stage-copy').style.opacity=String(1-end);
   }
