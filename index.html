@@ -52,14 +52,14 @@ h3{font-size:clamp(23px,2vw,30px)}
 .mail{box-shadow:0 30px 80px #23170b14;transform:perspective(1000px) rotateY(-3deg) rotateX(1deg)}
 .mail.is-visible{transform:perspective(1000px) rotateY(0) rotateX(0)}
 .attachment{transition:background .25s,transform .25s var(--ease-out)}.attachment:hover{transform:translateY(-3px)}
-.flow-cue{display:flex;align-items:center;gap:12px;margin-top:34px;font-size:14px;color:var(--muted)}
-.flow-cue:before{content:"";width:44px;height:1px;background:var(--orange);animation:cueLine 1.8s ease-in-out infinite}
+.flow-cue{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px;font-size:clamp(20px,1.55vw,24px);font-weight:650;color:var(--ink);text-align:center}
+.flow-cue:before{content:"";width:16px;height:16px;border-right:2px solid var(--orange);border-bottom:2px solid var(--orange);transform:rotate(45deg);animation:cueDown 1.45s ease-in-out infinite;order:2}
 @keyframes heroOrbit{to{transform:rotate(360deg)}}
 @keyframes heroPulse{50%{transform:scale(1.5);opacity:.55}}
-@keyframes cueLine{50%{width:72px}}
+@keyframes cueDown{0%,100%{transform:translateY(0) rotate(45deg);opacity:.45}50%{transform:translateY(10px) rotate(45deg);opacity:1}}
 @media(max-width:900px){.wrap{padding-left:36px;padding-right:36px}.scene{padding:100px 0}.scene-index{top:80px}.voice-origin{font-size:clamp(43px,7vw,70px)}}
 @media(max-width:640px){h1,.voice-origin{font-size:clamp(38px,12vw,54px)}h2{font-size:clamp(32px,9vw,43px)}p{font-size:18px}.lead{font-size:20px}.wrap{padding-left:24px;padding-right:24px}.scene{padding:78px 0}.scene.hero{padding:64px 0 88px}.scene-index{right:22px;top:55px}.comparison{grid-template-columns:1fr}.scene.hero:before{width:78vw;right:-36%;top:20%}.top-inner{min-height:54px}}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.schedule:before{transform:scaleX(1)}.project-run{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.schedule:before{transform:scaleX(1)}.project-run{opacity:1;transform:none}.flow-cue:before{animation:none}}
 
 /* Opening revision · continuous executive story */
 .workbar{display:none!important}
@@ -188,7 +188,7 @@ h3{font-size:clamp(23px,2vw,30px)}
 .format-strip span,.direction-flow strong,.direction-flow span,.project-highlight h2{word-break:keep-all;overflow-wrap:break-word}
 .project-highlight h2{font-size:clamp(34px,3.35vw,50px);line-height:1.32}
 .direction-flow strong{font-size:clamp(17px,1.45vw,21px);line-height:1.5}
-.direction-flow span{margin-top:5px;line-height:1.65}
+.direction-flow span{margin-top:5px;line-height:1.65;min-height:3.3em}
 .week-one-outline article p+p{margin-top:10px;font-size:15px;line-height:1.75}
 @media(max-width:640px){.story-book{height:min(590px,68vh)}.project-highlight h2{font-size:34px}.direction-flow>div{padding:24px 20px 26px!important}}
 
@@ -266,30 +266,99 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 /* Executive readability: raise the smallest on-screen type without enlarging headlines */
 @media screen{
   .eyebrow{font-size:17px}
-  .brand{font-size:16px}
-  .journey a{font-size:15px}
-  .workbar button{font-size:16px}
+  .brand{font-size:18px}
+  .journey a{font-size:17px}
+  .workbar button{font-size:18px}
   .tag,.org,.video-file,.hotspot span,.voice small,.longline .n,.pill,.record .source,
   .diag-question span,.need-grid b,.book-spine span,.project-ribbon span,.project-path>span,
   .role-bridge article span,.concept-preview span,.signal-grid article span,.direction-flow b,
-  .week-one-hero span,.helper-roles span,.next-notice span{font-size:15px}
+  .week-one-hero span,.helper-roles span,.next-notice span{font-size:17px}
   .meta,.footer-row button,.caption,.doc-section .doc-label,.mail-head,.ledger th,
   .schedule .period b,.schedule-caption,.connection-grid span,.report-item b,.source-links,
   .tool-row .tools,.bridge-motion b,.story-cover>span,.story-cover em,.project-facts span,
-  .format-strip span{font-size:16px}
+  .format-strip span{font-size:18px}
   label,.ledger caption,.statline span,.schedule .period p,.project-run,.work-surface .concept,
-  .flow-node,.timeline span,.report-preview .report-item,.report-item p,.bridge-labels,.flow-cue,
+  .flow-node,.timeline span,.report-preview .report-item,.report-item p,.bridge-labels,
   .diag-bar b,.stage-copy p,.direction-flow span,.purpose-formula article>b,.helper-roles p{font-size:17px}
   .project-path div p,.purpose-formula article p,.checkline span{font-size:18px}
 }
 @media screen and (max-width:640px){
-  .journey a{font-size:13px}
-  .schedule .period b{font-size:13px}
-  .schedule .period p,.project-run,.schedule-caption{font-size:14px}
-  .flow-node{font-size:15px}
-  .org{font-size:12px}
-  .hotspot span{font-size:13px}
+  .journey a{font-size:15px}
+  .schedule .period b{font-size:15px}
+  .schedule .period p,.project-run,.schedule-caption{font-size:16px}
+  .flow-node{font-size:17px}
+  .org{font-size:14px}
+  .hotspot span{font-size:15px}
 }
+
+/* Opening conversation · leader question followed by employee replies */
+#voices .chat-thread{max-width:980px;margin:48px 0 0 auto;display:grid;gap:18px}
+#voices .chat-row{display:flex;align-items:flex-end;gap:16px;width:100%;--chat-delay:0s}
+#voices .chat-row.leader{justify-content:flex-start}
+#voices .chat-row.staff{justify-content:flex-end}
+#voices .chat-avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;flex:0 0 54px;background:#ded8d0;color:#4e4944;border:1px solid #c8c0b7;box-shadow:0 8px 20px #372b2012}
+#voices .chat-avatar.leader-avatar{background:#252422;color:#fff;border-color:#252422}
+#voices .chat-avatar svg{width:29px;height:29px;fill:currentColor}
+#voices .chat-bubble{position:relative;max-width:min(720px,78%);padding:17px 22px 18px;border:1px solid #d7d0c8;background:#fff;box-shadow:0 12px 32px #392b2010}
+#voices .leader .chat-bubble{background:#252422;color:#fff;border-color:#252422}
+#voices .leader .chat-bubble:before{content:"";position:absolute;left:-9px;bottom:16px;border-top:9px solid transparent;border-bottom:9px solid transparent;border-right:10px solid #252422}
+#voices .staff .chat-bubble:after{content:"";position:absolute;right:-9px;bottom:16px;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:10px solid #fff;filter:drop-shadow(1px 0 0 #d7d0c8)}
+#voices .chat-meta{font-size:17px;color:#827b74;margin-bottom:5px;font-weight:600;letter-spacing:-.02em}
+#voices .leader .chat-meta{color:#c9c3bc}
+#voices .staff .chat-meta{text-align:right}
+#voices .chat-bubble p{font-size:clamp(20px,1.7vw,27px);line-height:1.5;font-weight:650}
+#voices .chat-row:nth-child(1){--chat-delay:.18s}
+#voices .chat-row:nth-child(2){--chat-delay:.48s}
+#voices .chat-row:nth-child(3){--chat-delay:.78s}
+#voices .chat-row:nth-child(4){--chat-delay:1.08s}
+.motion-ready #voices .chat-row[data-story]{opacity:0;transform:translateY(30px) scale(.985);transition:opacity .68s ease,transform .92s var(--ease-out);transition-delay:0s}
+.motion-ready #voices .chat-row[data-story][data-scroll-dir="up"]{transform:translateY(-24px) scale(.985)}
+.motion-ready #voices .chat-row[data-story].is-inview{opacity:1;transform:none;transition-delay:var(--chat-delay)}
+@media(max-width:640px){
+  #voices .chat-thread{margin-top:34px;gap:15px}
+  #voices .chat-row{gap:10px}
+  #voices .chat-avatar{width:44px;height:44px;flex-basis:44px}
+  #voices .chat-avatar svg{width:24px;height:24px}
+  #voices .chat-bubble{max-width:calc(100% - 54px);padding:14px 16px 15px}
+  #voices .chat-meta{font-size:15px}
+  #voices .chat-bubble p{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){.motion-ready #voices .chat-row[data-story]{opacity:1!important;transform:none!important;transition:none!important}}
+@media screen and (min-width:641px){.org{font-size:16px!important}}
+@media screen and (max-width:640px){.org{font-size:13px!important}}
+
+/* Stronger first-page close and desktop messenger frame */
+.purpose-close p{font-size:clamp(22px,1.8vw,28px)!important;font-weight:650;line-height:1.5;color:#fff}
+#voices .messenger-window{max-width:1080px;margin:48px 0 0 auto;border:1px solid #c9c1b8;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 28px 75px #31261b24}
+#voices .messenger-bar{height:58px;padding:0 20px;display:grid;grid-template-columns:100px 1fr 100px;align-items:center;background:#292826;color:#fff;border-bottom:1px solid #45423f}
+#voices .window-controls{display:flex;gap:8px}
+#voices .window-controls i{width:12px;height:12px;border-radius:50%;display:block;background:#77716b}
+#voices .window-controls i:first-child{background:#ff684e}
+#voices .window-controls i:nth-child(2){background:#f4bd4f}
+#voices .window-controls i:nth-child(3){background:#5fc66d}
+#voices .messenger-title{text-align:center;font-size:18px;font-weight:700;letter-spacing:-.02em}
+#voices .messenger-status{text-align:right;font-size:16px;color:#c9c4bd}
+#voices .messenger-status:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#5fc66d;margin-right:7px}
+#voices .messenger-window .chat-thread{max-width:none;margin:0;padding:30px 34px;background:linear-gradient(135deg,#f4f1ed,#ebe7e1)}
+#voices .messenger-compose{margin:0;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ddd6cf;background:#fff;color:#938c85;font-size:17px}
+#voices .compose-send{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#252422;color:#fff;font-size:15px}
+#helper h2 span{color:var(--orange)}
+#diagnosis .diag-bar{grid-template-columns:120px 1fr}
+@media(max-width:1000px){#diagnosis .diagnosis-caption .context-unit{white-space:normal}}
+@media(max-width:640px){
+  #voices .messenger-window{margin-top:34px;border-radius:10px}
+  #voices .messenger-bar{height:50px;padding:0 14px;grid-template-columns:74px 1fr 74px}
+  #voices .window-controls{gap:5px}
+  #voices .window-controls i{width:9px;height:9px}
+  #voices .messenger-title{font-size:15px}
+  #voices .messenger-status{font-size:13px}
+  #voices .messenger-window .chat-thread{padding:22px 15px}
+  #voices .messenger-compose{font-size:15px;padding:12px 14px}
+}
+</style>
+<style>
+.org{color:#191919!important;background:transparent!important;padding:0!important;border:0!important;box-shadow:none!important;pointer-events:none;text-shadow:0 1px 8px rgba(255,255,255,.82);transition:color .32s ease,text-shadow .32s ease}
+.org.on-dark{color:#fff!important;text-shadow:0 1px 10px rgba(0,0,0,.76)}
 </style>
 </head>
 <body class="">
@@ -315,7 +384,7 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <h1 data-story>AI를 배우는 걸로 끝나지 않고,<br>
 <span>우리 조직에 어떻게 적용할지 <span class="keep-together">결정해 봅니다.</span></span>
 </h1>
-<p class="purpose-lead" data-story>3주 교육으로 관점을 넓히고, 실제 업무과제로 우리 조직에 맞는 AI 활용 방향을 구체화합니다.</p>
+<p class="purpose-lead" data-story>교육에서 얻은 인사이트를 실제 업무과제로 이어갈 수 있도록 돕겠습니다.</p>
 <div class="purpose-formula" data-story-group>
 <article data-story>
 <b>LEAD</b>
@@ -349,20 +418,51 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <h1 class="voice-origin space">개인의 AI 사용이 곧<br>
 <span>조직의 AI 활용을 뜻하지는 않습니다.</span>
 </h1>
-<p class="opening-question" data-story>“우리 조직도 이미 AI를 활용하고 있지 않나요?”</p>
-<div class="voices" id="voices-list" aria-label="직원 의견" data-story-group>
-  <div class="voice" data-story>
-<small>직원의 목소리</small>
-<p>“개인적으로는 사용하고 있습니다.”</p>
+<div class="messenger-window" aria-label="컴퓨터 메신저 대화창">
+<div class="messenger-bar" aria-hidden="true">
+  <div class="window-controls"><i></i><i></i><i></i></div>
+  <div class="messenger-title">Microsoft Teams</div>
+  <div class="messenger-status">온라인</div>
 </div>
-  <div class="voice" data-story>
-<small>직원의 목소리</small>
-<p>“업무에 활용되고 있는지는 잘 모르겠습니다.”</p>
+<div class="chat-thread" id="voices-list" aria-label="실장과 직원의 대화" data-story-group>
+  <div class="chat-row leader" data-story>
+    <div class="chat-avatar leader-avatar" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2c-4.5 0-8.2 2.4-8.2 5.4 0 .6.5 1 1 1h14.4c.6 0 1-.4 1-1 0-3-3.7-5.4-8.2-5.4Z"/></svg>
+    </div>
+    <div class="chat-bubble">
+      <div class="chat-meta">○○본부 A실장 · 오전 9:12</div>
+      <p>“우리 조직도 이미 AI를 활용하고 있지 않나요?”</p>
+    </div>
+  </div>
+  <div class="chat-row staff" data-story>
+    <div class="chat-bubble">
+      <div class="chat-meta">○○○ 책임 · 오전 9:13</div>
+      <p>“개인적으로는 사용하고 있습니다.”</p>
+    </div>
+    <div class="chat-avatar" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2c-4.5 0-8.2 2.4-8.2 5.4 0 .6.5 1 1 1h14.4c.6 0 1-.4 1-1 0-3-3.7-5.4-8.2-5.4Z"/></svg>
+    </div>
+  </div>
+  <div class="chat-row staff" data-story>
+    <div class="chat-bubble">
+      <div class="chat-meta">○○○ 매니저 · 오전 9:14</div>
+      <p>“업무에 활용되고 있는지는 잘 모르겠습니다.”</p>
+    </div>
+    <div class="chat-avatar" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2c-4.5 0-8.2 2.4-8.2 5.4 0 .6.5 1 1 1h14.4c.6 0 1-.4 1-1 0-3-3.7-5.4-8.2-5.4Z"/></svg>
+    </div>
+  </div>
+  <div class="chat-row staff" data-story>
+    <div class="chat-bubble">
+      <div class="chat-meta">○○○ 책임 · 오전 9:15</div>
+      <p>“어디까지 활용해도 되는지 기준이 명확하지 않습니다.”</p>
+    </div>
+    <div class="chat-avatar" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2c-4.5 0-8.2 2.4-8.2 5.4 0 .6.5 1 1 1h14.4c.6 0 1-.4 1-1 0-3-3.7-5.4-8.2-5.4Z"/></svg>
+    </div>
+  </div>
 </div>
-  <div class="voice" data-story>
-<small>직원의 목소리</small>
-<p>“어디까지 활용해도 되는지 기준이 명확하지 않습니다.”</p>
-</div>
+<div class="messenger-compose" aria-hidden="true"><span>메시지를 입력하세요.</span><span class="compose-send">➤</span></div>
 </div>
 <p id="voice-question" class="lead">리더와 직원은 AI 활용을<br>어떻게 다르게 보고 있을까요?</p>
 </div>
@@ -371,77 +471,55 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <section class="scene white" id="diagnosis">
 <div class="wrap">
 <p class="eyebrow">사전진단 결과</p>
-<h2>관심과 기대는 높았지만,<br>실제 준비 수준은 그에 미치지 못했습니다.</h2>
-<p class="lead"><span class="context-unit">리더의 자기인식과 구성원의 기대에 비해,</span><br><span class="context-unit">실제 리터러시와 업무 반영 수준은 낮았습니다.</span></p>
+<h2>리더의 관심과 인식은 높았지만,<br>구성원이 체감한 실제 활용 수준은 낮았습니다.</h2>
+<p class="lead"><span class="context-unit">리더가 생각하는 수준보다,</span><br><span class="context-unit">구성원이 평가한 AI 리터러시와 업무 활용 수준은 낮았습니다.</span></p>
 <div class="diagnosis-board space-lg">
 <div class="diag-row">
 <div class="diag-question">
 <span>01</span>
-<strong>리더의 AI 리터러시 수준</strong>
+<strong>리터러시 수준과 AI에 대한 관심도</strong>
 </div>
 <div class="diag-bars">
 <div class="diag-bar">
-<b>자기평가</b>
+<b>본인평가</b>
 <i style="--value:74%">
 <em>74%</em>
 </i>
 </div>
 <div class="diag-bar staff">
-<b>진단결과</b>
+<b>구성원 평가</b>
 <i style="--value:48%">
 <em>48%</em>
 </i>
 </div>
 </div>
 <p class="diag-insight">
-<strong>자기인식과 진단의 차이</strong> · AI를 이해하고 있다는 인식에 비해, 가능성과 한계를 구분하는 실제 진단 결과는 낮았습니다.</p>
+<strong>본인평가와 구성원 평가의 차이</strong> · 리더가 스스로 평가한 AI 리터러시와 관심도보다, 구성원이 평가한 수준은 좀 더 낮았습니다.</p>
 </div>
 <div class="diag-row">
 <div class="diag-question">
 <span>02</span>
-<strong>리더의 AI 활용에 대한 조직의 기대</strong>
+<strong>조직 내 업무에서의 AI 활용도</strong>
 </div>
 <div class="diag-bars">
 <div class="diag-bar">
-<b>구성원 기대</b>
+<b>리더 인식</b>
 <i style="--value:84%">
 <em>84%</em>
 </i>
 </div>
 <div class="diag-bar staff">
-<b>현재 체감</b>
+<b>구성원 체감</b>
 <i style="--value:38%">
 <em>38%</em>
 </i>
 </div>
 </div>
 <p class="diag-insight accent-line">
-<strong>기대와 업무 반영의 차이</strong> · 구성원은 리더가 활용 방향과 기준을 정해주길 기대하지만, 실제 업무 운영에 반영됐다는 체감은 낮았습니다.</p>
-</div>
-<div class="diag-row">
-<div class="diag-question">
-<span>03</span>
-<strong>AI를 실제 업무에 적용할 준비</strong>
-</div>
-<div class="diag-bars">
-<div class="diag-bar">
-<b>적용 의향</b>
-<i style="--value:87%">
-<em>87%</em>
-</i>
-</div>
-<div class="diag-bar staff">
-<b>과제 구체화</b>
-<i style="--value:31%">
-<em>31%</em>
-</i>
+<strong>리더 인식과 구성원 체감의 차이</strong> · 리더는 소속 조직의 업무에서 AI가 활용되고 있다고 봤지만, 구성원이 체감한 활용 수준은 훨씬 낮았습니다.</p>
 </div>
 </div>
-<p class="diag-insight">
-<strong>관심과 실행의 차이</strong> · AI를 업무에 적용하려는 의지는 높았지만, 구체적인 실행과제로 이어진 경우는 많지 않았습니다.</p>
-</div>
-</div>
-<p class="diagnosis-caption"><span class="context-unit">관심을 실행으로 연결하려면,</span><br><strong class="context-unit">리더가 AI 활용의 방향과 기준을 정해야 합니다.</strong></p>
+<p class="diagnosis-caption"><span class="context-unit">리더와 구성원의 인식 차이를 줄이고 실제 활용을 높이려면,</span><br><strong class="context-unit">리더가 AI 활용의 방향과 기준을 명확히 정해야 합니다.</strong></p>
 <div class="leader-signals" data-story-group>
 <div class="signal-head">
 <p class="eyebrow">진단에서 확인된 두 가지 관심</p>
@@ -450,7 +528,7 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <div class="signal-grid">
 <article data-story>
 <span>AI 적용을 위해 궁금한 점</span>
-<strong>“AI를 실제 업무에 적용하려면<br>어떤 조건이 갖춰져야 할까?”</strong>
+<strong>“AI를 우리 조직의 실제 업무에 적용하려면<br>어떤 조건이 갖춰져야 할까?”</strong>
 <p>AI를 실제 업무에 적용하기 위해 데이터와 보안, 업무 기준을 어떻게 갖춰야 하는지가 주요 관심사였습니다.</p>
 </article>
 <article data-story>
@@ -472,8 +550,8 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <section class="scene journey-scene" id="journey">
 <div class="wrap journey-heading">
 <p class="eyebrow">3주 교육과정</p>
-<h2>3주 동안, 리더의 관점은<br>개인의 활용에서 조직의 실행과 확장으로 넓어집니다.</h2>
-<p class="lead">1주차에는 AI를 이해하고, 2주차에는 조직 적용의 조건을 살피며, 3주차에는 조직 운영으로 확대할 가능성을 판단합니다.</p>
+<h2>3주 동안, 개인의 AI 활용부터<br>조직 적용과 확장까지 순서대로 살펴봅니다.</h2>
+<p class="lead">1주차에는 AI를 이해하고, 2주차에는 조직 적용의 조건을 살피며, 3주차에는 우리 조직에 어떤 방향으로 적용하면 좋을지 인사이트를 제공합니다.</p>
 <div class="format-strip" data-story-group>
 <div data-story>
 <b>교육 주기</b>
@@ -569,7 +647,7 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <div class="wrap project-highlight">
 <div>
 <p class="eyebrow">실제 업무과제</p>
-<h2>교육이 진행되는 동안, 2주차 교육 후부터<br>실제 업무과제 1건을 선정해 약 1개월간 수행합니다.</h2>
+<h2>2주차 교육 후 실제 업무과제 1건을 선정해<br>약 1개월 동안 직접 수행합니다.</h2>
 </div>
 <div class="project-facts" data-story-group>
 <div data-story>
@@ -595,33 +673,33 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 </i>
 </div>
 <div class="wrap">
-<p class="eyebrow" data-story>한 건의 과제에서 조직 운영의 판단으로</p>
-<p class="manifesto-kicker" data-story>업무과제 한 건을 수행하는 것으로<br>이 과정이 끝나지는 않습니다.</p>
-<h2 data-story>직접 적용한 경험을 바탕으로,<br>
-<span>내년도 조직 운영에서 AI를<br>어디에 어떻게 활용할지 판단합니다.</span>
+<p class="eyebrow" data-story>이번 교육의 최종 목적</p>
+<p class="manifesto-kicker" data-story>업무과제 한 건으로 끝내지 않습니다.</p>
+<h2 data-story>교육에서 인사이트를 얻고,<br>업무과제를 직접 수행하며<br>
+<span>내년도 우리 조직의 AI 적용 방향을 구체화해 봅니다.</span>
 </h2>
 <div class="direction-flow" data-story-group>
 <div data-story>
 <b>01</b>
-<strong>업무에 적용해 봅니다</strong>
-<span>실제 효과와 한계를 확인합니다</span>
+<strong>교육에서 인사이트를 얻습니다</strong>
+<span>AI의 변화와 조직 적용 사례를<br>살펴봅니다</span>
 </div>
 <i>
 </i>
 <div data-story>
 <b>02</b>
-<strong>필요한 조건을 확인합니다</strong>
-<span>데이터, 보안, 업무 기준, 운영방식을 살펴봅니다</span>
+<strong>업무과제를 직접 수행합니다</strong>
+<span>실제 업무에 적용하며 효과와<br>필요한 조건을 이해합니다</span>
 </div>
 <i>
 </i>
 <div data-story>
 <b>03</b>
-<strong>조직의 활용 방향을 정합니다</strong>
-<span>확대할 업무와 적용방식을 판단합니다</span>
+<strong>조직의 적용 방향을 구체화합니다</strong>
+<span>앞으로 무엇을 어디에 적용할지<br>방향을 그려봅니다</span>
 </div>
 </div>
-<p class="manifesto-close" data-story>이번 경험이 내년도 AI 활용 방향을 구체화하는 출발점이 됩니다.</p>
+<p class="manifesto-close" data-story>교육과 과제 경험을 바탕으로, 향후 우리 조직에 AI를 무엇에 어떻게 적용할지 방향을 수립할 수 있도록 안내합니다.</p>
 </div>
 </section>
 <section class="scene warm" id="helper">
@@ -629,8 +707,8 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 <div class="helper-intro">
 <div>
 <p class="eyebrow">1:1 HELPER</p>
-<h2>리더의 방향이 실제 실행으로 이어지도록,<br>1:1 Helper가 함께 도와드립니다.</h2>
-<p class="lead">각 리더는 사전 선정된 ACE 또는 AI 링커 가운데 업무과제를 함께할 Helper 한 명을 직접 선택해 1:1로 매칭합니다. Helper 후보로 선정된 분들께는 역할과 진행방식을 별도로 안내했습니다.</p>
+<h2>혼자 시작하려니 막막하신가요?<br><span>Helper가 1:1로 과제의 시작부터 실행까지 함께합니다.</span></h2>
+<p class="lead">각 리더는 사전 선정된 ACE 또는 AI 링커 가운데 업무과제를 함께할 Helper 한 명을 직접 선택해 1:1로 매칭합니다. Helper 후보로 선정된 분들께는 역할과 진행방식을 사전에 안내했습니다.</p>
 </div>
 <div class="helper-principle" data-story>
 <strong>Helper는 리더의 방향을 실행 가능한 과제로 연결하는 1:1 실행 파트너입니다.</strong>
@@ -769,7 +847,7 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
 
   const cue = document.createElement('div');
   cue.className = 'flow-cue';
-  cue.textContent = '아래로 스크롤해 과정의 흐름을 확인하세요';
+  cue.textContent = '아래로 내려 사전진단 결과를 확인해 보세요';
   document.querySelector('#voices .voice-stage').append(cue);
 
   const updateProgress = () => {
@@ -791,7 +869,7 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
   },{threshold:0,rootMargin:'-48% 0px -48% 0px'});
   scenes.forEach(scene=>focusObserver.observe(scene));
   if(scenes[0])scenes[0].classList.add('scene-active');
-  const detailTargets=[...document.querySelectorAll('.diag-row,.bookcase')];
+  const detailTargets=[...document.querySelectorAll('.diag-row')];
   const detailObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>entry.target.classList.toggle('is-visible',entry.isIntersecting));
   },{threshold:.18});
@@ -875,6 +953,28 @@ p,.lead,.signal-grid article strong,.helper-principle strong,.role-bridge h3,.we
     entry.target.classList.toggle('is-title-visible',entry.isIntersecting);
   }),{threshold:.01,rootMargin:'4% 0px 4% 0px'});
   requestAnimationFrame(()=>requestAnimationFrame(()=>titles.forEach(title=>titleObserver.observe(title))));
+})();</script>
+<script>(()=>{
+  const org=document.querySelector('.org');
+  if(!org)return;
+  const surfaceIsDark=()=>{
+    let node=document.elementFromPoint(Math.max(1,innerWidth-24),Math.max(1,innerHeight-20));
+    while(node&&node!==document.documentElement){
+      const values=getComputedStyle(node).backgroundColor.match(/[\d.]+/g);
+      if(values&&values.length>=3){
+        const [r,g,b,a=1]=values.map(Number);
+        if(a>.12)return (.2126*r+.7152*g+.0722*b)<145;
+      }
+      node=node.parentElement;
+    }
+    return false;
+  };
+  let queued=false;
+  const update=()=>{org.classList.toggle('on-dark',surfaceIsDark());queued=false};
+  const request=()=>{if(queued)return;queued=true;requestAnimationFrame(update)};
+  addEventListener('scroll',request,{passive:true});
+  addEventListener('resize',request);
+  request();
 })();</script>
 <script>document.querySelectorAll('.journey a[aria-disabled="true"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));</script>
 </body>
